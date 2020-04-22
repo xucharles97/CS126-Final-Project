@@ -87,3 +87,4 @@ if(NOT catch2_POPULATED)
 endif()
 
 # Add more CMake libraries here ...
+add_library(godot SHARED IMPORTED /Users/School/Downloads/godot-master)
