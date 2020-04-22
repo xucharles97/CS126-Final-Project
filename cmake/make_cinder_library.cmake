@@ -20,7 +20,7 @@ function( ci_make_library )
     endif()
 
     option( CINDER_COPY_ASSETS "Copy assets to a folder next to the application. Default is OFF, and a symlink is created that points to the original assets folder." OFF )
-    include( "${ARG_CINDER_PATH}/proj/cmake/configure.cmake" )
+    include( "${ARG_CINDER_PATH}/cinder_0.9.2_mac/proj/cmake/configure.cmake" )
 
     # Give the user the option to define with which build type of Cinder the application should link.
     # By default the application will link with Cinder based on CMAKE_CURRENT_BUILD_TYPE.
