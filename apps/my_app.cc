@@ -8,10 +8,16 @@
 namespace myapp {
 
 using cinder::app::KeyEvent;
+using std::cout;
 
-MyApp::MyApp() { }
+MyApp::MyApp() :
+  gravity{0.0f, -10.0f},
+  world{gravity} {}
 
-void MyApp::setup() { }
+
+void MyApp::setup() {
+  cout << gravity.y;
+}
 
 void MyApp::update() { }
 
