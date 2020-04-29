@@ -16,7 +16,7 @@ class GameWorld {
 
  private:
   b2Vec2 gravity;
-  b2World world;
+  b2World world = b2World(b2Vec2());
   std::vector<b2BodyDef> bodyDefs;
 
 };

@@ -23,3 +23,10 @@
 - **4/24/2020** Successfully added base objects from Box2D
     - Added and defined a vector object for gravity and used it to initiate a world object
         - Printed out one of the vector values to verify that everything worked
+        
+- **4/28/2020** Worked on figuring out how to visually display a Box2D World object in Cinder
+    - The official Box2D tutorials and documentation online only talked about how to create things with the default Box2D library
+        - Had to find a way to integrate it with Cinder
+        - Added ConversionUtils to convert from the Box2D world to the Cinder display
+        - Added GameWorld class to store all the parts of a specific scene/level in the game
+            - Makes it easier to add more levels later on, allowing for more scalability
