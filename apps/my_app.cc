@@ -4,6 +4,7 @@
 
 #include <cinder/app/App.h>
 #include <Box2D/Box2D.h>
+#include "mylibrary/GameWorld.h"
 
 namespace myapp {
 
@@ -16,7 +17,9 @@ MyApp::MyApp() :
 
 
 void MyApp::setup() {
-  cout << gravity.y;
+  // Define the ground body.
+
+
 }
 
 void MyApp::update() { }
@@ -24,5 +27,9 @@ void MyApp::update() { }
 void MyApp::draw() { }
 
 void MyApp::keyDown(KeyEvent event) { }
+
+void MyApp::drawWorld(const GameWorld& world) {
+
+}
 
 }  // namespace myapp
