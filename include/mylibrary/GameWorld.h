@@ -12,12 +12,18 @@
 class GameWorld {
  public:
   GameWorld();
-  void CreateBody(b2BodyDef &body);
+  //add a body to the bodies vector
+  //initialize its fixture
+  //shape is box by default
+  void CreateBody(b2BodyDef body);
+  void CreateBody(b2BodyDef body, float width, float height);
+  void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
+  std::vector<b2Body*> bodies;
 
  private:
   b2Vec2 gravity;
   b2World world = b2World(b2Vec2());
-  std::vector<b2BodyDef> bodyDefs;
+
 
 };
 

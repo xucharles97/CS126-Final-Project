@@ -5,6 +5,7 @@
 #include <cinder/app/App.h>
 #include <Box2D/Box2D.h>
 #include "mylibrary/GameWorld.h"
+#include "mylibrary/GameBody.h"
 
 namespace myapp {
 
@@ -13,23 +14,35 @@ using std::cout;
 
 MyApp::MyApp() :
   gravity{0.0f, -10.0f},
-  world{gravity} {}
+  world{gravity},
+  timeStep{1.0f / 60.0f},
+  velocityIterations{6},
+  positionIterations{2} {}
 
 
 void MyApp::setup() {
-  // Define the ground body.
 
-
+  b2BodyDef groundBodyDef;
+  groundBodyDef.position.Set(0.0f, -10.0f);
+  demo.CreateBody(groundBodyDef);
 }
 
-void MyApp::update() { }
+void MyApp::update() {
+  demo.Step(timeStep, velocityIterations, positionIterations);
+}
 
-void MyApp::draw() { }
+void MyApp::draw() {
+  drawWorld(demo);
+}
 
 void MyApp::keyDown(KeyEvent event) { }
 
 void MyApp::drawWorld(const GameWorld& world) {
-
+  for (std::__wrap_iter<
+           std::vector<b2Body *, std::allocator<b2Body *>>::const_pointer>
+           iter = world.bodies.begin(); iter != world.bodies.end(); iter++) {
+    //TODO: Create special class to represent the bodies so you can store coordinates, dimensions, etc
+  }
 }
 
 }  // namespace myapp

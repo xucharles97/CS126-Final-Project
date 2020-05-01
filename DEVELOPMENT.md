@@ -30,3 +30,16 @@
         - Added ConversionUtils to convert from the Box2D world to the Cinder display
         - Added GameWorld class to store all the parts of a specific scene/level in the game
             - Makes it easier to add more levels later on, allowing for more scalability
+            
+ - **4/29/2020**
+    - Fleshed out ConversionUtils and GameWorld classes
+        - Added various scaling helper functions to ConversionUtils to (hopefully) be able to scale the GameWorld properly
+    - Changed how I planned on storing the body data in GameWorld class a few times
+        - Initially it was going to be a vector of b2BodyDefs
+        - Changed to a vector of b2Body* instead (since that's what the actualy fixtures are tied to)
+        - Decided to create a GameBody class instead to store all my data
+            - This way I can also keep track of the exact size, color, etc of all the blocks
+            - Realized this would be necessary when I started to fill in code for the DrawWorld function in my_app
+    - Added the GameBody class to store all information related to a given body, will flesh out later
+            
+        

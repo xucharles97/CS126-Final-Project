@@ -19,6 +19,11 @@ class MyApp : public cinder::app::App {
   b2Vec2 gravity;
   b2World world;
   void drawWorld(const GameWorld& world);
+  GameWorld demo;
+ private:
+  float32 timeStep;
+  int32 velocityIterations;
+  int32 positionIterations;
 
 };
 
