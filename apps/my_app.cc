@@ -2,10 +2,12 @@
 
 #include "my_app.h"
 
-#include <cinder/app/App.h>
 #include <Box2D/Box2D.h>
-#include "mylibrary/GameWorld.h"
+#include <cinder/app/App.h>
+#include <cinder/gl/gl.h>
+
 #include "mylibrary/GameBody.h"
+#include "mylibrary/GameWorld.h"
 
 namespace myapp {
 
@@ -21,18 +23,20 @@ MyApp::MyApp() :
 
 
 void MyApp::setup() {
-
+  cout << "setup" << std::endl;
   b2BodyDef groundBodyDef;
-  groundBodyDef.position.Set(0.0f, -10.0f);
+  groundBodyDef.position.Set(100.0f, 100.0f);
   demo.CreateBody(groundBodyDef);
 }
 
 void MyApp::update() {
+//  cout << "update" << std::endl;
   demo.Step(timeStep, velocityIterations, positionIterations);
 }
 
 void MyApp::draw() {
   drawWorld(demo);
+//  cinder::gl::drawSolidRect(Rectf(100.0f, 100.0f, 150.0f, 150.0f));
 }
 
 void MyApp::keyDown(KeyEvent event) { }
