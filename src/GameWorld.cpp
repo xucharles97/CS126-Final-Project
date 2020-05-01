@@ -3,6 +3,9 @@
 //
 
 #include "mylibrary/GameWorld.h"
+
+#include <mylibrary/GameBody.h>
+
 #include "mylibrary/ConversionUtils.h"
 
 GameWorld::GameWorld() {
@@ -15,14 +18,15 @@ GameWorld::GameWorld() {
 }
 
 void GameWorld::CreateBody(b2BodyDef body) {
-  CreateBody(body, 50.0f, 10.0f);
+  CreateBody(body, 50.0f, 10.0f, b2Vec2(0, -10));
 
 }
 
 
-void GameWorld::CreateBody(b2BodyDef bodyDef, float width, float height) {
+void GameWorld::CreateBody(b2BodyDef bodyDef, float width, float height, b2Vec2 position) {
   b2Body* body = world.CreateBody(&bodyDef);
-  bodies.push_back(body);
+  GameBody newBody(body, position, width, height);
+  bodies.push_back(newBody);
   b2PolygonShape box;
   box.SetAsBox(width, height);
   body->CreateFixture(&box, 0.0);

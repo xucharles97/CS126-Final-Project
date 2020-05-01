@@ -9,6 +9,8 @@
 
 #include <vector>
 
+#include "GameBody.h"
+
 class GameWorld {
  public:
   GameWorld();
@@ -16,9 +18,9 @@ class GameWorld {
   //initialize its fixture
   //shape is box by default
   void CreateBody(b2BodyDef body);
-  void CreateBody(b2BodyDef body, float width, float height);
+  void CreateBody(b2BodyDef body, float width, float height, b2Vec2 position);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
-  std::vector<b2Body*> bodies;
+  std::vector<GameBody> bodies;
 
  private:
   b2Vec2 gravity;

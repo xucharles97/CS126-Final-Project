@@ -41,7 +41,6 @@ void MyApp::drawWorld(const GameWorld& world) {
   for (std::__wrap_iter<
            std::vector<b2Body *, std::allocator<b2Body *>>::const_pointer>
            iter = world.bodies.begin(); iter != world.bodies.end(); iter++) {
-    //TODO: Create special class to represent the bodies so you can store coordinates, dimensions, etc
   }
 }
 
