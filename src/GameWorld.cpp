@@ -36,3 +36,9 @@ void GameWorld::CreateBody(b2BodyDef bodyDef, float width, float height, b2Vec2 
 void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionIterations) {
   world.Step(timeStep, velocityIterations, positionIterations);
 }
+
+void GameWorld::draw() {
+  for (std::vector<GameBody>::iterator iter = bodies.begin(); iter != bodies.end(); iter++) {
+    iter->draw();
+  }
+}

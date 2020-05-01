@@ -20,6 +20,7 @@ class GameWorld {
   void CreateBody(b2BodyDef body);
   void CreateBody(b2BodyDef body, float width, float height, b2Vec2 position);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
+  void draw();
   std::vector<GameBody> bodies;
 
  private:

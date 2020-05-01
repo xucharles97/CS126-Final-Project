@@ -18,7 +18,7 @@ class MyApp : public cinder::app::App {
   void keyDown(cinder::app::KeyEvent) override;
   b2Vec2 gravity;
   b2World world;
-  void drawWorld(const GameWorld& world);
+  void drawWorld(GameWorld& world);
   GameWorld demo;
  private:
   float32 timeStep;

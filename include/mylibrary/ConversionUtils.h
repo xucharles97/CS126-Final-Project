@@ -11,7 +11,7 @@
 
 using namespace ci;
 
-struct Convsersions {
+struct Conversions {
   static float getScaling() {
     static float scaling = 50.0f; return scaling;
   }
