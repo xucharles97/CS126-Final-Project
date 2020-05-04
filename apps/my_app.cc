@@ -17,6 +17,8 @@ using std::cout;
 MyApp::MyApp() :
   gravity{0.0f, -10.0f},
   world{gravity},
+  width{800.0f},
+  height{800.0f},
   timeStep{1.0f / 60.0f},
   velocityIterations{6},
   positionIterations{2} {}
@@ -25,8 +27,8 @@ MyApp::MyApp() :
 void MyApp::setup() {
   cout << "setup" << std::endl;
   b2BodyDef groundBodyDef;
-  groundBodyDef.position.Set(100.0f, 100.0f);
-  demo.CreateBody(groundBodyDef);
+  groundBodyDef.position.Set(width / 2, height - 50);
+  demo.CreateBody(groundBodyDef, width, height / 8, groundBodyDef.position);
 }
 
 void MyApp::update() {

@@ -26,3 +26,8 @@ void GameBody::draw() {
   Rectf rect(pos.x - width, pos.y - height, pos.x + width, pos.y + height);
   gl::drawSolidRect(rect);
 }
+b2Vec2 GameBody::getPosition() { return position; }
+
+float GameBody::getWidth() { return width; }
+
+float GameBody::getHeight() { return height; }

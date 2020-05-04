@@ -21,6 +21,8 @@ class MyApp : public cinder::app::App {
   void drawWorld(GameWorld& world);
   GameWorld demo;
  private:
+  float32 width;
+  float32 height;
   float32 timeStep;
   int32 velocityIterations;
   int32 positionIterations;

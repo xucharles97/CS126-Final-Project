@@ -12,7 +12,6 @@ using cinder::Color;
 
 class GameBody {
  public:
-  GameBody();
   GameBody(b2Body* body, b2Vec2 position, float width, float height);
   void draw();
   b2Vec2 getPosition();
