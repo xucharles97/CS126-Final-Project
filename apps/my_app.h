@@ -26,6 +26,7 @@ class MyApp : public cinder::app::App {
   float32 timeStep;
   int32 velocityIterations;
   int32 positionIterations;
+  b2BodyDef player;
 
 };
 

@@ -12,7 +12,9 @@ using cinder::Color;
 
 class GameBody {
  public:
+  GameBody();
   GameBody(b2Body* body, b2Vec2 position, float width, float height);
+  GameBody(b2Body* body, float width, float height);
   void draw();
   b2Vec2 getPosition();
   float getWidth();
@@ -29,6 +31,7 @@ class GameBody {
   float width;
   float height;
   b2PolygonShape shape;
+  b2FixtureDef fixtureDef;
   Color color;
 };
 

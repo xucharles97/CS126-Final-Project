@@ -25,10 +25,19 @@ MyApp::MyApp() :
 
 
 void MyApp::setup() {
-  cout << "setup" << std::endl;
+
+  //TODO: Refactor into classes specific to a given level (use polymorphism)
   b2BodyDef groundBodyDef;
   groundBodyDef.position.Set(width / 2, height - 50);
   demo.CreateBody(groundBodyDef, width, height / 8, groundBodyDef.position);
+
+  b2BodyDef topRight;
+  topRight.position.Set(width, 50);
+  demo.CreateBody(topRight, 25, 25, topRight.position);
+
+  b2BodyDef topLeft;
+  topRight.position.Set(0, 50);
+  demo.CreateBody(topRight, 25, 25, topLeft.position);
 }
 
 void MyApp::update() {

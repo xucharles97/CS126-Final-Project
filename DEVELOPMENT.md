@@ -58,5 +58,22 @@
         - I closed CLion a few days ago (computer was overheating), and when I reopened it the configurations were wrong
             - Didn't notice at first, so I spent a long time trying different ways to draw all the objects
             - Changed the configurations and was able to draw it now
-            
-        
+- **5/03/2020**
+    - Added definitions to various methods in GameBody class
+        - Mainly just the getters methods I didn't fill in before, nothing too significant here
+    - Tried to add a DynamicBody for the player into the World
+        - Initially tried to add the player as its own b2Body within GameWorld
+            - I know this isn't the best design, I just did this for now to get the basics going
+                - I'll create a PlayerBody class later
+            - I was able to draw the a red rectangle to represent the Player when I used the b2BodyDef parameters in the Rectf
+                - However, a b2BodyDef's position doesn't update according to forces like gravity
+            - Switched to using the b2Body* instead
+                - Was able to change it's position in the Box2D engine based on gravity (printed the coordinates to check)
+                - However, the player box was no longer being drawn on screen
+                - Not sure why this was. When I printed out the coordinates, they were clearly still within the boundaries of the screen
+                    - Even added some other static blocks to the top corners to check
+        - Wasn't able to get that to work, so I decided to try and add a GameBody player variable to the GameWorld class
+            - Updated the GameBody constructor to check the b2Body* input type
+            - Wasn't able to run the program past the first iteration before it crashed, not sure why
+                - Will do further debugging tomorrow 
+    
