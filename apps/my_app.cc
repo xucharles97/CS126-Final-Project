@@ -34,7 +34,7 @@ void MyApp::setup() {
   //TODO: Refactor into classes specific to a given level (use polymorphism)
   b2BodyDef groundBodyDef;
   groundBodyDef.position.Set(width / 2, height - 50);
-  demo.CreateBody(groundBodyDef, width, 25, groundBodyDef.position);
+  demo.CreateBody(groundBodyDef, width, height / 8, groundBodyDef.position);
 
   b2BodyDef top;
   top.position.Set(width / 2, 0);
@@ -59,8 +59,11 @@ void MyApp::update() {
 void MyApp::draw() {
   cinder::gl::clear();
   drawWorld(demo);
+
+  cinder::gl::color(1, 0, 0);
   cinder::vec2 position(demo.getPlayer()->GetPosition().x, demo.getPlayer()->GetPosition().y);
-  Rectf rect(position.x - 25, position.y - 25, position.x + 25, position.y + 25);
+  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
+  Rectf rect(position.x + 50, position.y + 50, position.x, position.y);
   cinder::gl::drawSolidRect(rect);
 }
 
