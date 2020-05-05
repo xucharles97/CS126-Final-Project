@@ -4,7 +4,8 @@
 
 #include <Box2D/Box2D.h>
 #include <cinder/app/App.h>
-#include <cinder/gl/gl.h>
+#include <cinder/Color.h>
+#include "cinder/gl/gl.h"
 
 #include "mylibrary/GameBody.h"
 #include "mylibrary/GameWorld.h"
@@ -13,6 +14,9 @@ namespace myapp {
 
 using cinder::app::KeyEvent;
 using std::cout;
+using cinder::Color;
+using cinder::Rectf;
+
 
 MyApp::MyApp() :
   gravity{0.0f, -10.0f},
@@ -29,15 +33,19 @@ void MyApp::setup() {
   //TODO: Refactor into classes specific to a given level (use polymorphism)
   b2BodyDef groundBodyDef;
   groundBodyDef.position.Set(width / 2, height - 50);
-  demo.CreateBody(groundBodyDef, width, height / 8, groundBodyDef.position);
+  demo.CreateBody(groundBodyDef, width, 25, groundBodyDef.position);
 
-  b2BodyDef topRight;
-  topRight.position.Set(width, 50);
-  demo.CreateBody(topRight, 25, 25, topRight.position);
+  b2BodyDef top;
+  top.position.Set(width / 2, 0);
+  demo.CreateBody(top, width, 25, top.position);
 
-  b2BodyDef topLeft;
-  topRight.position.Set(0, 50);
-  demo.CreateBody(topRight, 25, 25, topLeft.position);
+  b2BodyDef left;
+  left.position.Set(0, height / 2);
+  demo.CreateBody(left, 25, height, left.position);
+
+  b2BodyDef right;
+  right.position.Set(width - 50, height / 2);
+  demo.CreateBody(right, 25, height, right.position);
 }
 
 void MyApp::update() {
@@ -47,7 +55,8 @@ void MyApp::update() {
 
 void MyApp::draw() {
   drawWorld(demo);
-//  cinder::gl::drawSolidRect(Rectf(100.0f, 100.0f, 150.0f, 150.0f));
+  Rectf rect(100, 100, 150, 150);
+  cinder::gl::drawSolidRect(rect);
 }
 
 void MyApp::keyDown(KeyEvent event) { }

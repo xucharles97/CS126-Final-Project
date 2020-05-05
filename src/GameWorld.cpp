@@ -17,25 +17,6 @@ GameWorld::GameWorld() {
   // Construct a world object, which will hold and simulate the rigid bodies.
   world.SetGravity(gravity);
 
-  b2BodyDef playerDef;
-  playerDef.type = b2_dynamicBody;
-  playerDef.position.Set(400.0f, 100.0f);
-
-  b2Body* body = world.CreateBody(&playerDef);
-  GameBody player(body, 5.0f, 5.0f);
-
-
-//  player.type = b2_dynamicBody;
-//  player.position.Set(400.0f, 100.0f);
-//  playerBody = world.CreateBody(&player);
-//
-//  dynamicBox.SetAsBox(1.0f, 1.0f);
-//
-//  fixtureDef.shape = &dynamicBox;
-//  fixtureDef.density = 1.0f;
-//  fixtureDef.friction = 0.3f;
-//  playerBody->CreateFixture(&fixtureDef);
-
 
 }
 
@@ -64,15 +45,7 @@ void GameWorld::draw() {
   for (auto iter = bodies.begin(); iter != bodies.end(); iter++) {
     iter->draw();
   }
-  player.draw();
-  //vec2 position(playerBody->GetPosition().x, playerBody->GetPosition().y);
-//  vec2 position(player.position.x, player.position.y);
-//
-//  std::cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
-//  cinder::gl::color(1, 0, 0);
-//  //TODO: Figure out why the player isn't getting drawn
-//  Rectf rect(position.x + 5, position.y - 5, position.x + 5,position.y + 5);
-//  gl::drawSolidRect(rect);
+
 }
 
 //void GameWorld::addPlayer(b2BodyDef newPlayer) {
