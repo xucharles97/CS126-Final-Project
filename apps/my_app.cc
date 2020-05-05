@@ -6,6 +6,7 @@
 #include <cinder/app/App.h>
 #include <cinder/Color.h>
 #include "cinder/gl/gl.h"
+#include "cinder/Vector.h"
 
 #include "mylibrary/GameBody.h"
 #include "mylibrary/GameWorld.h"
@@ -46,6 +47,8 @@ void MyApp::setup() {
   b2BodyDef right;
   right.position.Set(width - 50, height / 2);
   demo.CreateBody(right, 25, height, right.position);
+
+  demo.addPlayer(125.0f, 125.0f);
 }
 
 void MyApp::update() {
@@ -54,8 +57,10 @@ void MyApp::update() {
 }
 
 void MyApp::draw() {
+  cinder::gl::clear();
   drawWorld(demo);
-  Rectf rect(100, 100, 150, 150);
+  cinder::vec2 position(demo.getPlayer()->GetPosition().x, demo.getPlayer()->GetPosition().y);
+  Rectf rect(position.x - 25, position.y - 25, position.x + 25, position.y + 25);
   cinder::gl::drawSolidRect(rect);
 }
 

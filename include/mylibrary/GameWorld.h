@@ -21,13 +21,14 @@ class GameWorld {
   void CreateBody(b2BodyDef body, float width, float height, b2Vec2 position);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
   void draw();
-  void addPlayer(b2BodyDef player);
-  void addPlayer();
+  b2Body* getPlayer();
+  void addPlayer(float posX, float posY);
   std::vector<GameBody> bodies;
 
  private:
   b2Vec2 gravity;
   b2World world = b2World(b2Vec2());
+  b2Body* player;
 
 
 
