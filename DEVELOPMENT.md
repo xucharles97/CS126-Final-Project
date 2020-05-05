@@ -58,6 +58,7 @@
         - I closed CLion a few days ago (computer was overheating), and when I reopened it the configurations were wrong
             - Didn't notice at first, so I spent a long time trying different ways to draw all the objects
             - Changed the configurations and was able to draw it now
+            
 - **5/03/2020**
     - Added definitions to various methods in GameBody class
         - Mainly just the getters methods I didn't fill in before, nothing too significant here
@@ -75,5 +76,23 @@
         - Wasn't able to get that to work, so I decided to try and add a GameBody player variable to the GameWorld class
             - Updated the GameBody constructor to check the b2Body* input type
             - Wasn't able to run the program past the first iteration before it crashed, not sure why
-                - Will do further debugging tomorrow 
+                - Will do further debugging tomorrow
+                
+- **5/04/2020** Managed to animate the player body properly in cinder
+    - Started off trying to debug what I started yesterday
+        - Wasn't able to figure out why exactly it the GameBody approach causing the program to crash
+            - However, I do believe it had something to do with the way the memory was being handled, since there were so many versions of the player b2Body* floating around
+        - With how complicated the GameBody approach got, I eventually decided to go back to my original method of trying to draw the player in the GameWorld::draw() function
+            - Since I was having so much trouble understanding and debugging the GameBody approach, I felt that it probably wasn't really good design/memory handling, which is why I decided to switch
+            - I understood this method much better, and by all intents and purposes the world was being simulated properly (based on the print statements I made)
+                - However, for some reason, the updated coordinates of the player object in Box2D weren't getting passed to the cinder draw() function (the player box just wouldn't show up at all)
+    - Eventually decided to "soft reset" everything with a back-to-basics sort of approach
+        - Reverted the branch back to what I had yesterday, deleted everything related to the player from GameWorld
+            - Drew a simple static object in cinder to start (and to use as a reference for coordinates)
+            - Realized that the issue was most likely related to where the player object was getting drawn
+                - Had to be drawn in the main cinder draw() function instead of just some function in GameWorld, so I instead made getters and setters for the player variable in GameWorld
+                    - This way, I could still simulate the player in the world, but I would also be able to access the player data from my_app in order to draw the screen
+        - Got rid of all the GameWorld player variables except for b2Body*, as all the other information should be stored in the b2Body* anyways
+  
+        
     

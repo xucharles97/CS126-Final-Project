@@ -48,7 +48,7 @@ void MyApp::setup() {
   right.position.Set(width - 50, height / 2);
   demo.CreateBody(right, 25, height, right.position);
 
-  demo.addPlayer(125.0f, 125.0f);
+  demo.setPlayer(125.0f, 125.0f);
 }
 
 void MyApp::update() {

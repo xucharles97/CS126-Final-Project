@@ -35,8 +35,8 @@ float GameBody::getWidth() { return width; }
 float GameBody::getHeight() { return height; }
 
 GameBody::GameBody(b2Body* body, float bodyWidth, float bodyHeight) {
-  //TODO: Figure out why this is causing the program to crash
   if (body->GetType() == b2_dynamicBody) {
+
     shape.SetAsBox(bodyWidth, bodyHeight);
     fixtureDef.shape = &shape;
     fixtureDef.density = 1.0f;

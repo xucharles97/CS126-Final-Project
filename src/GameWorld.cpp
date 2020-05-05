@@ -47,7 +47,7 @@ void GameWorld::draw() {
   }
 
 }
-void GameWorld::addPlayer(float posX, float posY) {
+void GameWorld::setPlayer(float posX, float posY) {
   b2BodyDef bodyDef;
   bodyDef.type = b2_dynamicBody;
   bodyDef.position.Set(posX, posY);

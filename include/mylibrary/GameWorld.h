@@ -22,7 +22,7 @@ class GameWorld {
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
   void draw();
   b2Body* getPlayer();
-  void addPlayer(float posX, float posY);
+  void setPlayer(float posX, float posY);
   std::vector<GameBody> bodies;
 
  private:
