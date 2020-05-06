@@ -22,6 +22,10 @@ class PlayerBody : public GameBody {
   void stopHorizontally();
 
 
+  void touchedGround();
+  void leftGround();
+
+
 
   b2Vec2 getPhysicsPosition();
   ci::vec2 getScreenPosition();
@@ -30,8 +34,12 @@ class PlayerBody : public GameBody {
   void setPosition(float newX, float newY);
 
 
+
  private:
+  int maxJumps = 2;
   int numJumps;
+  bool isTouchingGround;
+  b2Fixture* footSensor;
   float maxHorizontalSpeed = 6.0f;
   direction currentDirection;
 

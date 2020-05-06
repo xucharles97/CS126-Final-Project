@@ -9,6 +9,7 @@
 
 #include <vector>
 
+#include "ContactListener.h"
 #include "GameBody.h"
 #include "PlayerBody.h"
 
@@ -35,6 +36,7 @@ class GameWorld {
   float32 timeStep;
   int32 velocityIterations;
   int32 positionIterations;
+  ContactListener contactListener;
 
 
 

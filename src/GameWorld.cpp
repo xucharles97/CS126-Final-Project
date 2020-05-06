@@ -20,7 +20,7 @@ GameWorld::GameWorld() {
   velocityIterations = 6;
   positionIterations = 2;
 
-
+  world.SetContactListener(&contactListener);
 }
 
 void GameWorld::CreateBody(b2BodyDef body) {

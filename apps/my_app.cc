@@ -76,11 +76,15 @@ void MyApp::keyDown(KeyEvent event) {
 //  cout << "keyDown code: " << std::to_string(event.getChar()) << std::endl;
 
   int code = event.getCode();
-  if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_k) {
-    upPressed = true;
+  if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_w) {
+    if (upPressed) {
+      upPressed = false;
+    } else {
+      upPressed = true;
+    }
   }
 
-  if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_j) {
+  if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_s) {
     downPressed = true;
   }
 
@@ -88,7 +92,7 @@ void MyApp::keyDown(KeyEvent event) {
     leftPressed = true;
   }
 
-  if (code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_s) {
+  if (code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_d) {
     rightPressed = true;
   }
 
