@@ -10,6 +10,7 @@
 #include <vector>
 
 #include "GameBody.h"
+#include "PlayerBody.h"
 
 class GameWorld {
  public:
@@ -21,14 +22,15 @@ class GameWorld {
   void CreateBody(b2BodyDef body, float width, float height, b2Vec2 position);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
   void draw();
-  b2Body* getPlayer();
+  PlayerBody getPlayer();
   void setPlayer(float posX, float posY);
   std::vector<GameBody> bodies;
 
  private:
   b2Vec2 gravity;
   b2World world = b2World(b2Vec2());
-  b2Body* player;
+  PlayerBody player;
+  b2Body* playerBody;
 
 
 

@@ -17,6 +17,10 @@ class PlayerBody : public GameBody {
   void MoveLeft();
   void MoveRight();
 
+  b2Vec2 GetPosition();
+  void SetPosition(b2Vec2 newPosition);
+  void SetPosition(float newX, float newY);
+
  private:
   int numJumps;
 

@@ -61,7 +61,7 @@ void MyApp::draw() {
   drawWorld(demo);
 
   cinder::gl::color(1, 0, 0);
-  cinder::vec2 position(demo.getPlayer()->GetPosition().x, demo.getPlayer()->GetPosition().y);
+  cinder::vec2 position(demo.getPlayer().GetPosition().x, demo.getPlayer().GetPosition().y);
   cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
   Rectf rect(position.x + 50, position.y + 50, position.x, position.y);
   cinder::gl::drawSolidRect(rect);

@@ -39,6 +39,8 @@ void GameWorld::CreateBody(b2BodyDef bodyDef, float width, float height, b2Vec2 
 
 void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionIterations) {
   world.Step(timeStep, velocityIterations, positionIterations);
+  std::cout << "Player position in GameWorld: (" << playerBody->GetPosition().x << ", " << playerBody->GetPosition().y << ")" << std::endl;
+
 }
 
 void GameWorld::draw() {
@@ -51,19 +53,24 @@ void GameWorld::setPlayer(float posX, float posY) {
   b2BodyDef bodyDef;
   bodyDef.type = b2_dynamicBody;
   bodyDef.position.Set(posX, posY);
-  player = world.CreateBody(&bodyDef);
+  playerBody = world.CreateBody(&bodyDef);
 
-  // Define another box shape for the player
-  b2PolygonShape dynamicBox;
-  dynamicBox.SetAsBox(50.0f, 50.0f);
+//  // Define another box shape for the player
+//  b2PolygonShape dynamicBox;
+//  dynamicBox.SetAsBox(50.0f, 50.0f);
+//
+//  b2FixtureDef fixtureDef;
+//  fixtureDef.shape = &dynamicBox;
+//  fixtureDef.density = 1.0f;
+//  fixtureDef.friction = 0.3f;
+//  player->CreateFixture(&fixtureDef);
 
-  b2FixtureDef fixtureDef;
-  fixtureDef.shape = &dynamicBox;
-  fixtureDef.density = 1.0f;
-  fixtureDef.friction = 0.3f;
-  player->CreateFixture(&fixtureDef);
+  PlayerBody newPlayer (playerBody, 50.0f, 50.0f);
+  player = newPlayer;
+  std::cout << "made player!" << std::endl;
 }
-b2Body* GameWorld::getPlayer() {
+
+PlayerBody GameWorld::getPlayer() {
   return player;
 }
 
