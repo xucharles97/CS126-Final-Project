@@ -69,34 +69,47 @@ void MyApp::draw() {
 }
 
 void MyApp::keyDown(KeyEvent event) {
-  upPressed, downPressed, leftPressed, rightPressed = false;
-  cout << "keyDown code: " << std::to_string(event.getChar()) << std::endl;
-  switch (event.getCode()) {
-    case KeyEvent::KEY_UP:
-    case KeyEvent::KEY_k: {
-      upPressed = true;
-      break;
-    }
-    case KeyEvent::KEY_DOWN:
-    case KeyEvent::KEY_j:
-    case KeyEvent::KEY_s: {
-      downPressed = true;
-      break;
-    }
-    case KeyEvent::KEY_LEFT:
-    case KeyEvent::KEY_h:
-    case KeyEvent::KEY_a: {
-      leftPressed = true;
-      break;
-    }
-    case KeyEvent::KEY_RIGHT:
-    case KeyEvent::KEY_l:
-    case KeyEvent::KEY_d: {
-      rightPressed = true;
-      break;
-    }
+//  upPressed, downPressed, leftPressed, rightPressed = false;
+//  cout << "keyDown code: " << std::to_string(event.getChar()) << std::endl;
+
+  int code = event.getCode();
+  if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_k) {
+    upPressed = true;
+  }
+
+  if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_j) {
+    downPressed = true;
+  }
+
+  if (code == KeyEvent::KEY_LEFT || code == KeyEvent::KEY_a) {
+    leftPressed = true;
+  }
+
+  if (code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_s) {
+    rightPressed = true;
+  }
+
+}
+
+void MyApp::keyUp(KeyEvent event) {
+  int code = event.getCode();
+  if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_k) {
+    upPressed = false;
+  }
+
+  if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_j) {
+    downPressed = false;
+  }
+
+  if (code == KeyEvent::KEY_LEFT || code == KeyEvent::KEY_a) {
+    leftPressed = false;
+  }
+
+  if (code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_s) {
+    rightPressed = false;
   }
 }
 
-  void MyApp::drawWorld(GameWorld & gameWorld) { gameWorld.draw(); }
+void MyApp::drawWorld(GameWorld & gameWorld) { gameWorld.draw(); }
+
 }  // namespace myapp

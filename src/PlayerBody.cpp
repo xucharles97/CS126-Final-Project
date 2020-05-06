@@ -64,8 +64,8 @@ void PlayerBody::moveRight() {
 
 void PlayerBody::stopHorizontally() {
   b2Vec2 velocity = body->GetLinearVelocity();
-//  velocity.x *= .98;
-  velocity.x = 0;
+  velocity.x *= .987;
+//  velocity.x = 0;
   body->SetLinearVelocity(velocity);
   currentDirection = DIR_STOP;
 }

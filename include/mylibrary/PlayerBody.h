@@ -30,7 +30,7 @@ class PlayerBody : public GameBody {
 
  private:
   int numJumps;
-  float maxHorizontalSpeed = 50.0f;
+  float maxHorizontalSpeed = 100.0f;
   direction currentDirection;
 
 
