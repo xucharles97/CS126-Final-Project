@@ -24,18 +24,19 @@ GameWorld::GameWorld() {
 }
 
 void GameWorld::CreateBody(b2BodyDef body) {
-  CreateBody(body, 100.0f, 50.0f, body.position);
+  CreateBody(100.0f, 50.0f, body.position);
 
 }
 
 
-void GameWorld::CreateBody(b2BodyDef bodyDef, float width, float height, b2Vec2 position) {
-  std::cout << "GameWorld 27" << std::endl;
+void GameWorld::CreateBody(float width, float height, b2Vec2 position) {
+  b2BodyDef bodyDef;
+  bodyDef.position.Set(Conversions::toPhysics(position).x, Conversions::toPhysics(position).y);
   b2Body* body = world.CreateBody(&bodyDef);
-  GameBody newBody(body, position, width, height);
+  GameBody newBody(body, Conversions::toPhysics(position), Conversions::dimensionsToPhysics(width), Conversions::dimensionsToPhysics(height));
   bodies.push_back(newBody);
   b2PolygonShape box;
-  box.SetAsBox(width  / 2, height / 2);
+  box.SetAsBox(newBody.getWidth(), newBody.getHeight());
   body->CreateFixture(&box, 0.0);
 
 }
@@ -47,7 +48,7 @@ void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionI
 }
 
 void GameWorld::Step(bool left, bool right, bool up, bool down) {
-  player.processDirectionalInput(left, right, up, down);
+  //player.processDirectionalInput(left, right, up, down);
   world.Step(timeStep, velocityIterations, positionIterations);
 }
 

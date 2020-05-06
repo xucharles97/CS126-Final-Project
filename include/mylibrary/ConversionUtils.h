@@ -21,7 +21,7 @@ struct Conversions {
     return vec2(fin.x, fin.y) * getScaling();
   }
 
-  static b2Vec2 toPhysics( vec2 fin )
+  static b2Vec2 toPhysics( b2Vec2 fin )
   {
     return b2Vec2( fin.x/getScaling(), fin.y/getScaling() );
   }
@@ -39,6 +39,15 @@ struct Conversions {
   static float radiansToDegrees( float rad )
   {
     return rad * 180.0f/M_PI;
+  }
+
+
+  static float dimensionsToPhysics(float dimension) {
+    return dimension / (getScaling() * 2); //divide by 2 since Box2D shapes only store half lengths
+  }
+
+  static float dimensionsToScreen(float dimension) {
+    return dimension * getScaling() * 2; //divide by 2 since Box2D shapes only store half lengths
   }
 };
 

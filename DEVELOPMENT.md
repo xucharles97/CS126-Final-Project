@@ -114,8 +114,8 @@
         - Played around with the way I was drawing my objects for a bit, then I realized I had completely misunderstood how I was supposed to use Box2D
             - The parameters I was using for Box2D were way too big for Box2D
                 - I was doing 1 pixel/Box2D meter, when in reality, Box2D can't handle numbers that big
-        - Decided to rewrite and reimplement my ConversionUtils class
-            - Originally added it because I saw someone else do that on a guide online, but I never understood why
+        - Decided to rewrite and reimplement my ConversionUtils class now that I have a better understanding of Box2D
+            - Originally added it because I saw someone else do something similar on a guide online, but I never understood why since at that point I was still trying to grasp how the whole engine worked
             
         
   

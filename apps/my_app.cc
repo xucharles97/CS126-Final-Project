@@ -10,6 +10,7 @@
 
 #include "mylibrary/GameBody.h"
 #include "mylibrary/GameWorld.h"
+#include "mylibrary/ConversionUtils.h"
 
 namespace myapp {
 
@@ -34,22 +35,22 @@ void MyApp::setup() {
 
   //TODO: Refactor into classes specific to a given level (use polymorphism)
   b2BodyDef groundBodyDef;
-  groundBodyDef.position.Set(width / 2, height - 50);
-  demo.CreateBody(groundBodyDef, width, height / 8, groundBodyDef.position);
+  groundBodyDef.position.Set(width / 2, height - 75);
+  demo.CreateBody(width, 150, groundBodyDef.position);
 
-  b2BodyDef top;
-  top.position.Set(width / 2, 0);
-  demo.CreateBody(top, width, 25, top.position);
-
+//  b2BodyDef top;
+//  top.position.Set(width / 2, 0);
+//  demo.CreateBody(width, 25, top.position);
+//
   b2BodyDef left;
   left.position.Set(0, height / 2);
-  demo.CreateBody(left, 25, height, left.position);
-
-  b2BodyDef right;
-  right.position.Set(width - 50, height / 2);
-  demo.CreateBody(right, 25, height, right.position);
-
-  demo.setPlayer(125.0f, height - 150);
+  demo.CreateBody(1, height, left.position);
+//
+//  b2BodyDef right;
+//  right.position.Set(width - 50, height / 2);
+//  demo.CreateBody(right, 25, height, right.position);
+//
+//  demo.setPlayer(125.0f, height - 150);
 }
 
 void MyApp::update() {
@@ -61,11 +62,11 @@ void MyApp::draw() {
   cinder::gl::clear();
   drawWorld(demo);
 
-  cinder::gl::color(1, 0, 0);
-  cinder::vec2 position(demo.getPlayer().getPosition().x, demo.getPlayer().getPosition().y);
-  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
-  Rectf rect(position.x + 50, position.y + 50, position.x, position.y);
-  cinder::gl::drawSolidRect(rect);
+//  cinder::gl::color(1, 0, 0);
+//  cinder::vec2 position(demo.getPlayer().getPosition().x, demo.getPlayer().getPosition().y);
+//  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
+//  Rectf rect(position.x + 50, position.y + 50, position.x, position.y);
+//  cinder::gl::drawSolidRect(rect);
 }
 
 void MyApp::keyDown(KeyEvent event) {
