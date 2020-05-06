@@ -128,6 +128,9 @@
         - Added a sensor on the bottom of the player and added a ContactListener class to detect collisions with the ground
             - Spent a lot of time trying to figure out how to set up ContactListener properly
             - Eventually realized I was overcomplicating it and only needed to set the footSensorData to the PlayerBody object
+    - First attempt at integrating EndContact didn't work
+            - For some reason footSensor->SetUserData(this) stored the correct information all the way up until the ContactListener was actually called
+                - Couldn't figure out where it was being lost (when I ran the debugger it happened somewhere in the Box2D methods), so I reverted the branch
         
   
         
