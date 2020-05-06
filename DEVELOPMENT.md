@@ -93,6 +93,31 @@
                 - Had to be drawn in the main cinder draw() function instead of just some function in GameWorld, so I instead made getters and setters for the player variable in GameWorld
                     - This way, I could still simulate the player in the world, but I would also be able to access the player data from my_app in order to draw the screen
         - Got rid of all the GameWorld player variables except for b2Body*, as all the other information should be stored in the b2Body* anyways
+   
+- **5/05/2020**
+    - Gave the player left/right movement functionality
+        - Added a PlayerBody class
+            - PlayerBody contains the same dynamic b2Body* used in GameWorld, but stores other helpful data, like the number of jumps, as well as helper functions to move the player
+            - This allows for easily adjustable player parameters, which will be especially useful once I start making levels
+        - Added a PlayerBody to the GameWorld as an instance variable but kept the original b2Body* player so that the player would still be a part of the physics simulation
+        - Created an enum for left/right/stop in PlayerBody.h to tell the horizontal velocity of the player
+        - Added booleans to my_app in order to tell which of the directional keys were down
+        - Initially used a switch statement in keyDown() to tell which direction to go on (like in Snake)
+            - Ran into an issue where it couldn't keep track of multiple inputs at once
+            - If I tried running it without any breaks then it would run count multiple directions
+                - This manifested as a bug where, regardless of input direction, the block would always go right
+                    - This is because the right key always has highest priority when processing the directional inputs in PlayerBody
+            - Eventually added break statements, but the player would then only stop/change direction if another key was pressed
+                - Realized I had to add a keyUp() override so that when a key was lifted, then that key's respective boolean was set to false
+    - As I was moving the player around, I realized there was an error in the way the Box2D objects were being displayed on screen
+        - I was running into a bunch of invisible walls which I soon realized were where the static bodies were supposed to be
+        - Played around with the way I was drawing my objects for a bit, then I realized I had completely misunderstood how I was supposed to use Box2D
+            - The parameters I was using for Box2D were way too big for Box2D
+                - I was doing 1 pixel/Box2D meter, when in reality, Box2D can't handle numbers that big
+        - Decided to rewrite and reimplement my ConversionUtils class
+            - Originally added it because I saw someone else do that on a guide online, but I never understood why
+            
+        
   
         
     

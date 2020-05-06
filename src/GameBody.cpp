@@ -24,7 +24,7 @@ void GameBody::draw() {
 //  gl::translate(pos);
 //  std::cout << "Body position: (" << pos.x << ", " << pos.y << ")" << std::endl;
   cinder::gl::color(color.r, color.g, color.b);
-  Rectf rect(pos.x - width, pos.y - height, pos.x + width, pos.y + height);
+  Rectf rect(pos.x - width / 2, pos.y - height / 2, pos.x + width / 2, pos.y + height / 2);
   gl::drawSolidRect(rect);
 
 }

@@ -35,7 +35,7 @@ void GameWorld::CreateBody(b2BodyDef bodyDef, float width, float height, b2Vec2 
   GameBody newBody(body, position, width, height);
   bodies.push_back(newBody);
   b2PolygonShape box;
-  box.SetAsBox(width, height);
+  box.SetAsBox(width  / 2, height / 2);
   body->CreateFixture(&box, 0.0);
 
 }
