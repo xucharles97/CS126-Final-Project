@@ -16,6 +16,9 @@ GameWorld::GameWorld() {
 
   // Construct a world object, which will hold and simulate the rigid bodies.
   world.SetGravity(gravity);
+  timeStep = 1.0f / 60.0f;
+  velocityIterations = 6;
+  positionIterations = 2;
 
 
 }
@@ -43,6 +46,11 @@ void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionI
 
 }
 
+void GameWorld::Step(bool left, bool right, bool up, bool down) {
+  player.processDirectionalInput(left, right, up, down);
+  world.Step(timeStep, velocityIterations, positionIterations);
+}
+
 void GameWorld::draw() {
   for (auto iter = bodies.begin(); iter != bodies.end(); iter++) {
     iter->draw();
@@ -65,8 +73,7 @@ void GameWorld::setPlayer(float posX, float posY) {
 //  fixtureDef.friction = 0.3f;
 //  player->CreateFixture(&fixtureDef);
 
-  PlayerBody newPlayer (playerBody, 50.0f, 50.0f);
-  player = newPlayer;
+  player = PlayerBody (playerBody, 50.0f, 50.0f);
   std::cout << "made player!" << std::endl;
 }
 

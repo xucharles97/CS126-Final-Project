@@ -30,6 +30,7 @@ MyApp::MyApp() :
 
 
 void MyApp::setup() {
+  upPressed, downPressed, leftPressed, rightPressed = false;
 
   //TODO: Refactor into classes specific to a given level (use polymorphism)
   b2BodyDef groundBodyDef;
@@ -48,12 +49,12 @@ void MyApp::setup() {
   right.position.Set(width - 50, height / 2);
   demo.CreateBody(right, 25, height, right.position);
 
-  demo.setPlayer(125.0f, 125.0f);
+  demo.setPlayer(125.0f, height - 150);
 }
 
 void MyApp::update() {
 //  cout << "update" << std::endl;
-  demo.Step(timeStep, velocityIterations, positionIterations);
+  demo.Step(leftPressed, rightPressed, upPressed, downPressed);
 }
 
 void MyApp::draw() {
@@ -61,16 +62,41 @@ void MyApp::draw() {
   drawWorld(demo);
 
   cinder::gl::color(1, 0, 0);
-  cinder::vec2 position(demo.getPlayer().GetPosition().x, demo.getPlayer().GetPosition().y);
+  cinder::vec2 position(demo.getPlayer().getPosition().x, demo.getPlayer().getPosition().y);
   cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
   Rectf rect(position.x + 50, position.y + 50, position.x, position.y);
   cinder::gl::drawSolidRect(rect);
 }
 
-void MyApp::keyDown(KeyEvent event) { }
-
-void MyApp::drawWorld(GameWorld& gameWorld) {
-  gameWorld.draw();
+void MyApp::keyDown(KeyEvent event) {
+  upPressed, downPressed, leftPressed, rightPressed = false;
+  cout << "keyDown code: " << std::to_string(event.getChar()) << std::endl;
+  switch (event.getCode()) {
+    case KeyEvent::KEY_UP:
+    case KeyEvent::KEY_k: {
+      upPressed = true;
+      break;
+    }
+    case KeyEvent::KEY_DOWN:
+    case KeyEvent::KEY_j:
+    case KeyEvent::KEY_s: {
+      downPressed = true;
+      break;
+    }
+    case KeyEvent::KEY_LEFT:
+    case KeyEvent::KEY_h:
+    case KeyEvent::KEY_a: {
+      leftPressed = true;
+      break;
+    }
+    case KeyEvent::KEY_RIGHT:
+    case KeyEvent::KEY_l:
+    case KeyEvent::KEY_d: {
+      rightPressed = true;
+      break;
+    }
+  }
 }
 
+  void MyApp::drawWorld(GameWorld & gameWorld) { gameWorld.draw(); }
 }  // namespace myapp

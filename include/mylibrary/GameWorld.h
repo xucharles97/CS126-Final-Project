@@ -21,6 +21,7 @@ class GameWorld {
   void CreateBody(b2BodyDef body);
   void CreateBody(b2BodyDef body, float width, float height, b2Vec2 position);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
+  void Step(bool left, bool right, bool up, bool down);
   void draw();
   PlayerBody getPlayer();
   void setPlayer(float posX, float posY);
@@ -31,6 +32,9 @@ class GameWorld {
   b2World world = b2World(b2Vec2());
   PlayerBody player;
   b2Body* playerBody;
+  float32 timeStep;
+  int32 velocityIterations;
+  int32 positionIterations;
 
 
 

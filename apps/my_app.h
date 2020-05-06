@@ -27,6 +27,10 @@ class MyApp : public cinder::app::App {
   int32 velocityIterations;
   int32 positionIterations;
   b2BodyDef player;
+  bool upPressed;
+  bool downPressed;
+  bool leftPressed;
+  bool rightPressed;
 
 };
 

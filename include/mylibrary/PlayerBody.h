@@ -13,16 +13,25 @@ class PlayerBody : public GameBody {
   PlayerBody();
   PlayerBody(b2Body* body, float width, float height);
 
-  void Jump();
-  void MoveLeft();
-  void MoveRight();
+  enum direction {DIR_LEFT, DIR_RIGHT, DIR_STOP};
 
-  b2Vec2 GetPosition();
-  void SetPosition(b2Vec2 newPosition);
-  void SetPosition(float newX, float newY);
+  void processDirectionalInput(bool leftInput, bool rightInput, bool upInput, bool downInput);
+  void jump();
+  void moveLeft();
+  void moveRight();
+  void stopHorizontally();
+
+
+
+  b2Vec2 getPosition();
+  void setPosition(b2Vec2 newPosition);
+  void setPosition(float newX, float newY);
+
 
  private:
   int numJumps;
+  float maxHorizontalSpeed = 50.0f;
+  direction currentDirection;
 
 
 };
