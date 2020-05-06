@@ -118,7 +118,12 @@
             - Originally added it because I saw someone else do something similar on a guide online, but I never understood why since at that point I was still trying to grasp how the whole engine worked
         - Reintegrated ConversionUtils to properly scale the Gamebody objects between Box2D and the screen
  
-            
+- **5/05/2020**            
+    - Reintegrated ConversionUtils to properly scale PlayerBody objects between Box2D and the screen
+        - The invisible wall glitch has been fixed
+    - Now all GameBody objects (including PlayerBody) take in and store their respective dimensions and positions as they appear on the Box2D coordinate system
+        - GameWorld automatically takes in the screen coordinates and converts them into Box2D coordinates in the createBody() and setPlayer() objects
+        - The width/height are stored as their respective half values, as that is how they are represented in Box2D            
         
   
         
