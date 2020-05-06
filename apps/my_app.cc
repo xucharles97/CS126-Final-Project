@@ -50,7 +50,7 @@ void MyApp::setup() {
 //  right.position.Set(width - 50, height / 2);
 //  demo.CreateBody(right, 25, height, right.position);
 //
-//  demo.setPlayer(125.0f, height - 150);
+  demo.setPlayer(125.0f, height - 150);
 }
 
 void MyApp::update() {
@@ -62,11 +62,13 @@ void MyApp::draw() {
   cinder::gl::clear();
   drawWorld(demo);
 
-//  cinder::gl::color(1, 0, 0);
-//  cinder::vec2 position(demo.getPlayer().getPosition().x, demo.getPlayer().getPosition().y);
-//  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
-//  Rectf rect(position.x + 50, position.y + 50, position.x, position.y);
-//  cinder::gl::drawSolidRect(rect);
+  cinder::gl::color(1, 0, 0);
+  cinder::vec2 position = demo.getPlayer().getScreenPosition();
+  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
+  float widthToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getWidth()) / 2;
+  float heightToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getHeight()) / 2;
+  Rectf rect(position.x - widthToDraw, position.y - heightToDraw, position.x + widthToDraw, position.y + heightToDraw);
+  cinder::gl::drawSolidRect(rect);
 }
 
 void MyApp::keyDown(KeyEvent event) {

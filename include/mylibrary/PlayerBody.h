@@ -23,14 +23,16 @@ class PlayerBody : public GameBody {
 
 
 
-  b2Vec2 getPosition();
+  b2Vec2 getPhysicsPosition();
+  ci::vec2 getScreenPosition();
+
   void setPosition(b2Vec2 newPosition);
   void setPosition(float newX, float newY);
 
 
  private:
   int numJumps;
-  float maxHorizontalSpeed = 100.0f;
+  float maxHorizontalSpeed = 6.0f;
   direction currentDirection;
 
 

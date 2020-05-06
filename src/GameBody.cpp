@@ -30,8 +30,8 @@ void GameBody::draw() {
   cinder::gl::color(color.r, color.g, color.b);
   float widthToDraw = Conversions::dimensionsToScreen(width) / 2;
   float heightToDraw = Conversions::dimensionsToScreen(height) / 2;
-  std::cout << "Body position: (" << pos.x << ", " << pos.y << ") widthToDraw: " << std::to_string(widthToDraw) << " heightToDraw: " << std::to_string(heightToDraw) << std::endl;
-  std::cout << "rect coordinates: (" << std::to_string(pos.x - widthToDraw) << ", " << std::to_string(pos.y - heightToDraw) << ", " << std::to_string(pos.x + widthToDraw) << ", " << std::to_string(pos.y + heightToDraw) << std::endl;
+//  std::cout << "Body position: (" << pos.x << ", " << pos.y << ") widthToDraw: " << std::to_string(widthToDraw) << " heightToDraw: " << std::to_string(heightToDraw) << std::endl;
+//  std::cout << "rect coordinates: (" << std::to_string(pos.x - widthToDraw) << ", " << std::to_string(pos.y - heightToDraw) << ", " << std::to_string(pos.x + widthToDraw) << ", " << std::to_string(pos.y + heightToDraw) << std::endl;
 
   Rectf rect(pos.x - widthToDraw, pos.y - heightToDraw, pos.x + widthToDraw, pos.y + heightToDraw);
   gl::drawSolidRect(rect);

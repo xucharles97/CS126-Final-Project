@@ -4,6 +4,8 @@
 
 #include "mylibrary/PlayerBody.h"
 
+#include <mylibrary/ConversionUtils.h>
+
 PlayerBody::PlayerBody() {
   color = {1, 0, 0};
   numJumps = 2;
@@ -70,9 +72,13 @@ void PlayerBody::stopHorizontally() {
   currentDirection = DIR_STOP;
 }
 
-b2Vec2 PlayerBody::getPosition() {
+b2Vec2 PlayerBody::getPhysicsPosition() {
   std::cout << "PlayerBody Position: (" << this->body->GetPosition().x << ", " << this->body->GetPosition().y << ")" << std::endl;
   return this->body->GetPosition();
+}
+
+ci::vec2 PlayerBody::getScreenPosition() {
+  return Conversions::toScreen(this->body->GetPosition());
 }
 
 void PlayerBody::setPosition(b2Vec2 newPosition) {

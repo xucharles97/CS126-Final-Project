@@ -116,6 +116,8 @@
                 - I was doing 1 pixel/Box2D meter, when in reality, Box2D can't handle numbers that big
         - Decided to rewrite and reimplement my ConversionUtils class now that I have a better understanding of Box2D
             - Originally added it because I saw someone else do something similar on a guide online, but I never understood why since at that point I was still trying to grasp how the whole engine worked
+        - Reintegrated ConversionUtils to properly scale the Gamebody objects between Box2D and the screen
+ 
             
         
   

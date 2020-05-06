@@ -12,7 +12,7 @@
 
 GameWorld::GameWorld() {
   // Define the gravity vector.
-  b2Vec2 gravity(0.0f, 20.0f);
+  b2Vec2 gravity(0.0f, 10.0f);
 
   // Construct a world object, which will hold and simulate the rigid bodies.
   world.SetGravity(gravity);
@@ -48,7 +48,7 @@ void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionI
 }
 
 void GameWorld::Step(bool left, bool right, bool up, bool down) {
-  //player.processDirectionalInput(left, right, up, down);
+  player.processDirectionalInput(left, right, up, down);
   world.Step(timeStep, velocityIterations, positionIterations);
 }
 
@@ -61,7 +61,7 @@ void GameWorld::draw() {
 void GameWorld::setPlayer(float posX, float posY) {
   b2BodyDef bodyDef;
   bodyDef.type = b2_dynamicBody;
-  bodyDef.position.Set(posX, posY);
+  bodyDef.position.Set(Conversions::toPhysics(posX), Conversions::toPhysics(posY));
   playerBody = world.CreateBody(&bodyDef);
 
 //  // Define another box shape for the player
@@ -74,7 +74,7 @@ void GameWorld::setPlayer(float posX, float posY) {
 //  fixtureDef.friction = 0.3f;
 //  player->CreateFixture(&fixtureDef);
 
-  player = PlayerBody (playerBody, 50.0f, 50.0f);
+  player = PlayerBody (playerBody, Conversions::dimensionsToPhysics(50.0f), Conversions::dimensionsToPhysics(50.0f));
   std::cout << "made player!" << std::endl;
 }
 
