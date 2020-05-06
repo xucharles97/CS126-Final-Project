@@ -123,7 +123,11 @@
         - The invisible wall glitch has been fixed
     - Now all GameBody objects (including PlayerBody) take in and store their respective dimensions and positions as they appear on the Box2D coordinate system
         - GameWorld automatically takes in the screen coordinates and converts them into Box2D coordinates in the createBody() and setPlayer() objects
-        - The width/height are stored as their respective half values, as that is how they are represented in Box2D            
+        - The width/height are stored as their respective half values, as that is how they are represented in Box2D
+    - Added ability for player to jump by applying an upwards impulse on the body
+        - Added a sensor on the bottom of the player and added a ContactListener class to detect collisions with the ground
+            - Spent a lot of time trying to figure out how to set up ContactListener properly
+            - Eventually realized I was overcomplicating it and only needed to set the footSensorData to the PlayerBody object
         
   
         

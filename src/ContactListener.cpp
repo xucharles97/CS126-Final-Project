@@ -11,19 +11,23 @@ void ContactListener::BeginContact(b2Contact* contact) {
   void* fixtureUserData = contact->GetFixtureA()->GetUserData();
   std::cout << "Begin contact" << std::endl;
   if (fixtureUserData) {
-//   if (fixtureUserData == (void*) 3) {
+    PlayerBody* temp = static_cast<PlayerBody*>(fixtureUserData);
+   if (dynamic_cast<PlayerBody*>(temp) != nullptr) {
      std::cout << "touchedGround A" << std::endl;
 
       static_cast<PlayerBody*>(fixtureUserData)->touchedGround();
-//    }
+    }
   }
 //
   fixtureUserData = contact->GetFixtureB()->GetUserData();
-//
+
   if (fixtureUserData) {
-//    if (fixtureUserData == (void*) 3) {
+    PlayerBody* temp = static_cast<PlayerBody*>(fixtureUserData);
+    if (dynamic_cast<PlayerBody*>(temp) != nullptr) {
+      std::cout << "touchedGround B" << std::endl;
+
       static_cast<PlayerBody*>(fixtureUserData)->touchedGround();
-//    }
+    }
   }
 
 }
