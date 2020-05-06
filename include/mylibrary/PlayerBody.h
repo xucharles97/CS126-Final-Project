@@ -36,12 +36,14 @@ class PlayerBody : public GameBody {
 
 
  private:
-  int maxJumps = 2;
+  int maxJumps;
   int numJumps;
   bool isTouchingGround;
   b2Fixture* footSensor;
   float maxHorizontalSpeed = 6.0f;
   direction currentDirection;
+  b2PolygonShape footShape;
+  b2FixtureDef footFixtureDef;
 
 
 };

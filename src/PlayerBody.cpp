@@ -26,20 +26,19 @@ PlayerBody::PlayerBody(b2Body* bodyInput, float bodyWidth, float bodyHeight) {
   this->body->CreateFixture(&fixtureDef);
   body->SetFixedRotation(true);
 
-  b2PolygonShape footShape;
-  b2FixtureDef footFixtureDef;
+
 
   footShape.SetAsBox(width, height, b2Vec2(0, -height), 0);
   footFixtureDef.shape = &footShape;
   footFixtureDef.isSensor = true;
   footSensor = body->CreateFixture(&footFixtureDef);
   footSensor->SetUserData(this);
-  body->SetUserData(this);
+//  body->SetUserData(this);
 
 
   color = {1, 0, 0};
-
-  numJumps = 2;
+  maxJumps = 2;
+  numJumps = maxJumps;
   currentDirection = DIR_STOP;
 
   this->body->SetUserData(this);
@@ -70,9 +69,9 @@ void PlayerBody::processDirectionalInput(bool leftInput, bool rightInput,
 }
 
 void PlayerBody::jump() {
-  if (numJumps <= 0) {
-    return;
-  }
+//  if (numJumps <= 0) {
+//    return;
+//  }
   std::cout << "jump" << std::endl;
   float impulse = body->GetMass() * -3;
   body->ApplyLinearImpulse( b2Vec2(0,impulse), body->GetPosition() );
@@ -121,7 +120,16 @@ void PlayerBody::setPosition(float newX, float newY) {
 void PlayerBody::touchedGround() {
   std::cout << "LANDED" << std::endl;
   isTouchingGround = true;
-  numJumps = maxJumps;
+  if (isTouchingGround) {
+    std::cout << "isTouchingGround" << std::endl;
+  } else {
+    std::cout << "didn't Touch Ground" << std::endl;
+  }
+
+//  numJumps = maxJumps;
+//
+//  std::cout << "numJumps: " << std::to_string(numJumps) << std::endl;
+//  std::cout << "maxJumps: " << std::to_string(maxJumps) << std::endl;
 }
 void PlayerBody::leftGround() {
   isTouchingGround = false;

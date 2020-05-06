@@ -13,6 +13,7 @@ void ContactListener::BeginContact(b2Contact* contact) {
   if (fixtureUserData) {
 //   if (fixtureUserData == (void*) 3) {
      std::cout << "touchedGround A" << std::endl;
+
       static_cast<PlayerBody*>(fixtureUserData)->touchedGround();
 //    }
   }
