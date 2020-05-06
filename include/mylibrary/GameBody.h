@@ -15,7 +15,7 @@ class GameBody {
   GameBody();
   GameBody(b2Body* body, b2Vec2 position, float width, float height);
   GameBody(b2Body* body, float width, float height);
-  void draw();
+  virtual void draw();
   b2Vec2 getPosition();
   float getWidth();
   float getHeight();
@@ -25,7 +25,7 @@ class GameBody {
   //b2Body* from World.CreateBody
   //b2PolygonShape (box) w/ dimensions
   //Color
- private:
+ protected:
   b2Vec2 position;
   b2Body* body;
   float width;
