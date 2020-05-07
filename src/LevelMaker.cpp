@@ -3,6 +3,7 @@
 //
 
 #include "mylibrary/LevelMaker.h"
+#include "mylibrary/GameWorld.h"
 
 LevelMaker::LevelMaker() {
   LevelMaker(800.0f);
@@ -15,7 +16,7 @@ LevelMaker::LevelMaker(float screenSize) {
   level.setWorldBottom(worldBottom);
 }
 
-LevelMaker::GameState LevelMaker::update(bool leftInput, bool rightInput, bool upInput, bool downInput) {
+GameWorld::GameState LevelMaker::update(bool leftInput, bool rightInput, bool upInput, bool downInput) {
   return level.Step(leftInput, rightInput, upInput, downInput);
 }
 
@@ -27,3 +28,4 @@ void LevelMaker::setNextLevel(LevelMaker* nextLevel) {
 }
 void LevelMaker::LoadLevel() {}
 LevelMaker* LevelMaker::getNextLevel() { return nextLevel; }
+

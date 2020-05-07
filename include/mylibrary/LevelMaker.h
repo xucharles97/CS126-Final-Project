@@ -14,9 +14,9 @@ class LevelMaker {
   LevelMaker();
   LevelMaker(float screenSize);
 
-  enum GameState {ONGOING, GAME_OVER, FINISHED_LEVEL};
 
-  GameState update(bool left, bool right, bool up, bool down);
+
+  GameWorld::GameState update(bool left, bool right, bool up, bool down);
   LevelMaker* getNextLevel();
 
   virtual void LoadLevel();

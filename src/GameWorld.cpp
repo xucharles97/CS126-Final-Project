@@ -59,15 +59,15 @@ void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionI
 
 }
 
-LevelMaker::GameState GameWorld::Step(bool left, bool right, bool up, bool down) {
+GameWorld::GameState GameWorld::Step(bool left, bool right, bool up, bool down) {
   player.processDirectionalInput(left, right, up, down);
   world.Step(timeStep, velocityIterations, positionIterations);
   if (playerFellThroughPit()) {
-    return LevelMaker::GameState::GAME_OVER;
+    return GameWorld::GameState::GAME_OVER;
   } else if (playerAtEnd()) {
-    return LevelMaker::GameState::FINISHED_LEVEL;
+    return GameWorld::GameState::FINISHED_LEVEL;
   } else {
-    return LevelMaker::GameState::ONGOING;
+    return GameWorld::GameState::ONGOING;
   }
 }
 
