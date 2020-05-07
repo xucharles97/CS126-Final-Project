@@ -11,6 +11,7 @@
 
 #include "ContactListener.h"
 #include "GameBody.h"
+#include "LevelMaker.h"
 #include "PlayerBody.h"
 
 class GameWorld {
@@ -24,13 +25,15 @@ class GameWorld {
   void CreateBody(float width, float height, float xCoord, float yCoord);
   void CreateBody(float width, float height, float xCoord, float yCoord, float red, float green, float blue);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
-  void Step(bool left, bool right, bool up, bool down);
+  LevelMaker::GameState Step(bool left, bool right, bool up, bool down);
   void draw();
   PlayerBody getPlayer();
   void setPlayer(float posX, float posY);
   std::vector<GameBody> bodies;
   void setEndPoint(float xCoord, float yCoord);
   bool playerAtEnd();
+  void setWorldBottom(float newBottom);
+  bool playerFellThroughPit();
 
  private:
   b2Vec2 gravity;

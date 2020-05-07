@@ -126,7 +126,7 @@ void PlayerBody::stopHorizontally() {
 }
 
 b2Vec2 PlayerBody::getPhysicsPosition() {
-//  std::cout << "PlayerBody Position: (" << this->body->GetPosition().x << ", " << this->body->GetPosition().y << ")" << std::endl;
+  std::cout << "PlayerBody Position: (" << this->body->GetPosition().x << ", " << this->body->GetPosition().y << ")" << std::endl;
   return this->body->GetPosition();
 }
 

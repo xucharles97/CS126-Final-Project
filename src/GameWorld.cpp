@@ -7,6 +7,7 @@
 #include <cinder/gl/draw.h>
 #include <cinder/gl/wrapper.h>
 #include <mylibrary/GameBody.h>
+#include <mylibrary/LevelMaker.h>
 
 #include "mylibrary/ConversionUtils.h"
 
@@ -58,9 +59,16 @@ void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionI
 
 }
 
-void GameWorld::Step(bool left, bool right, bool up, bool down) {
+LevelMaker::GameState GameWorld::Step(bool left, bool right, bool up, bool down) {
   player.processDirectionalInput(left, right, up, down);
   world.Step(timeStep, velocityIterations, positionIterations);
+  if (playerFellThroughPit()) {
+    return LevelMaker::GameState::GAME_OVER;
+  } else if (playerAtEnd()) {
+    return LevelMaker::GameState::FINISHED_LEVEL;
+  } else {
+    return LevelMaker::GameState::ONGOING;
+  }
 }
 
 void GameWorld::draw() {
@@ -68,6 +76,7 @@ void GameWorld::draw() {
     iter->draw();
   }
   player.draw();
+  player.getPhysicsPosition();
 
 }
 void GameWorld::setPlayer(float posX, float posY) {
@@ -103,7 +112,12 @@ bool GameWorld::playerAtEnd() {
   return sqrt(pow(endPoint.x - player.getPhysicsPosition().x , 2) +
                      pow(endPoint.y - player.getPhysicsPosition().y, 2)) < 1.0f;
 }
-
+void GameWorld::setWorldBottom(float newBottom) {
+  this->worldBottom = Conversions::toPhysics(newBottom);
+}
+bool GameWorld::playerFellThroughPit() {
+  return (player.getPhysicsPosition().y > worldBottom);
+}
 
 //void GameWorld::addPlayer(b2BodyDef newPlayer) {
 //  newPlayer.type = b2_dynamicBody;

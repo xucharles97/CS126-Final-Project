@@ -74,8 +74,8 @@ void MyApp::draw() {
   drawWorld(demo);
 
 //  cinder::gl::color(1, 0, 0);
-//  cinder::vec2 position = demo.getPlayer().getScreenPosition();
-//  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
+  cinder::vec2 position = demo.getPlayer().getScreenPosition();
+  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
 //  float widthToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getWidth()) / 2;
 //  float heightToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getHeight()) / 2;
 //  Rectf rect(position.x - widthToDraw, position.y - heightToDraw, position.x + widthToDraw, position.y + heightToDraw);
