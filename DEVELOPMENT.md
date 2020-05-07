@@ -131,7 +131,10 @@
     - First attempt at integrating EndContact didn't work
         - For some reason footSensor->SetUserData(this) stored the correct information all the way up until the ContactListener was actually called
             - Couldn't figure out where it was being lost (when I ran the debugger it happened somewhere in the Box2D methods), so I reverted the branch
-        - Second attempt didn't work either, decided to do it without the ContactListener       
+        - Second attempt didn't work either, decided to do it without the ContactListener
+    - Eventually got the jumping mechanics to work by using the player's velocity to determine if they were falling
+        - If their acceleration was downwards and but y velocity is 0, then they must be on the ground 
+           
         
   
         

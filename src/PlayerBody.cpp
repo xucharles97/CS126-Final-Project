@@ -95,7 +95,7 @@ void PlayerBody::jump() {
   } else {
 //    impulse *= -0.6f * jumpHeight;
     b2Vec2 velocity = body->GetLinearVelocity();
-    velocity.y -= 0.6 * jumpHeight;
+    velocity.y = -0.95 * jumpHeight;
 //  velocity.x = 0;
     body->SetLinearVelocity(velocity);
   }
