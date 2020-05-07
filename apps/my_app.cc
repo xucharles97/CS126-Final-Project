@@ -27,7 +27,8 @@ MyApp::MyApp() :
   height{800.0f},
   timeStep{1.0f / 60.0f},
   velocityIterations{6},
-  positionIterations{2} {}
+  positionIterations{2},
+  jumpCooldown{25} {}
 
 
 void MyApp::setup() {
@@ -51,11 +52,21 @@ void MyApp::setup() {
 //  demo.CreateBody(right, 25, height, right.position);
 //
   demo.setPlayer(125.0f, height - 150);
+
+  inJumpCooldown = false;
+  timeUntilNextJump = 0;
 }
 
 void MyApp::update() {
 //  cout << "update" << std::endl;
+  if (timeUntilNextJump > 0) {
+    timeUntilNextJump--;
+  }
+
   demo.Step(leftPressed, rightPressed, upPressed, downPressed);
+
+  upPressed = false;
+
 }
 
 void MyApp::draw() {
@@ -64,7 +75,7 @@ void MyApp::draw() {
 
   cinder::gl::color(1, 0, 0);
   cinder::vec2 position = demo.getPlayer().getScreenPosition();
-  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
+//  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
   float widthToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getWidth()) / 2;
   float heightToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getHeight()) / 2;
   Rectf rect(position.x - widthToDraw, position.y - heightToDraw, position.x + widthToDraw, position.y + heightToDraw);
@@ -77,11 +88,10 @@ void MyApp::keyDown(KeyEvent event) {
 
   int code = event.getCode();
   if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_w) {
-    if (upPressed) {
-      upPressed = false;
-    } else {
-      upPressed = true;
-    }
+      if (timeUntilNextJump <= 0) {
+        upPressed = true;
+        timeUntilNextJump = jumpCooldown;
+      }
   }
 
   if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_s) {

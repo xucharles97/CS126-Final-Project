@@ -24,6 +24,7 @@ class PlayerBody : public GameBody {
 
   void touchedGround();
   void leftGround();
+  bool isFalling();
 
 
 
@@ -44,6 +45,8 @@ class PlayerBody : public GameBody {
   direction currentDirection;
   b2PolygonShape footShape;
   b2FixtureDef footFixtureDef;
+  float previousYVelocity;
+  float jumpHeight;
 
 
 };

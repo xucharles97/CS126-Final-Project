@@ -43,7 +43,7 @@ void GameWorld::CreateBody(float width, float height, b2Vec2 position) {
 
 void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionIterations) {
   world.Step(timeStep, velocityIterations, positionIterations);
-  std::cout << "Player position in GameWorld: (" << playerBody->GetPosition().x << ", " << playerBody->GetPosition().y << ")" << std::endl;
+//  std::cout << "Player position in GameWorld: (" << playerBody->GetPosition().x << ", " << playerBody->GetPosition().y << ")" << std::endl;
 
 }
 

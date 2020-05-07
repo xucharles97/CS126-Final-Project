@@ -43,16 +43,31 @@ PlayerBody::PlayerBody(b2Body* bodyInput, float bodyWidth, float bodyHeight) {
 
   this->body->SetUserData(this);
 
-  isTouchingGround = false;
+  isTouchingGround = true;
+
+  previousYVelocity = 0.0f;
+
+  jumpHeight = 7.0f;
+
 }
 
 void PlayerBody::processDirectionalInput(bool leftInput, bool rightInput,
                                          bool upInput, bool downInput) {
 //  std::cout << "up: " << std::to_string(upInput) << " down: " << std::to_string(downInput) << " left: " << std::to_string(leftInput) << " right: " << std::to_string(rightInput) << std::endl;
 
+//  if (body.)
+
+  //if you just landed
+  if (!isFalling() && previousYVelocity != 0) {
+    isTouchingGround = true;
+    numJumps = maxJumps;
+  }
+
   if (upInput) {
     jump();
   }
+
+  previousYVelocity = body->GetLinearVelocity().y;
 
   //Process right and left inputs
   //Right will always override left
@@ -64,18 +79,30 @@ void PlayerBody::processDirectionalInput(bool leftInput, bool rightInput,
     stopHorizontally();
   }
 
-  std::cout << "Player velocity: (" << body->GetLinearVelocity().x << ", " << body->GetLinearVelocity().y << std::endl;
+//  std::cout << "Player velocity: (" << body->GetLinearVelocity().x << ", " << body->GetLinearVelocity().y << std::endl;
 
 }
 
 void PlayerBody::jump() {
-//  if (numJumps <= 0) {
-//    return;
-//  }
-  std::cout << "jump" << std::endl;
-  float impulse = body->GetMass() * -3;
-  body->ApplyLinearImpulse( b2Vec2(0,impulse), body->GetPosition() );
+  if (numJumps <= 0) {
+    return;
+  }
+//  std::cout << "jump" << std::endl;
+
+  if (isTouchingGround) {
+    float impulse = body->GetMass() * -jumpHeight;
+    body->ApplyLinearImpulse( b2Vec2(0,impulse), body->GetPosition());
+  } else {
+//    impulse *= -0.6f * jumpHeight;
+    b2Vec2 velocity = body->GetLinearVelocity();
+    velocity.y -= 0.6 * jumpHeight;
+//  velocity.x = 0;
+    body->SetLinearVelocity(velocity);
+  }
+
   numJumps--;
+  std::cout << "numJumps: " << std::to_string(numJumps) << std::endl;
+  isTouchingGround = false;
 }
 void PlayerBody::moveLeft() {
   b2Vec2 velocity = body->GetLinearVelocity();
@@ -105,7 +132,7 @@ b2Vec2 PlayerBody::getPhysicsPosition() {
 
 ci::vec2 PlayerBody::getScreenPosition() {
 //  std::cout << "footSensor Position (Physics): (" << this->footSensor << ", " << this->body->GetPosition().y << ")" << std::endl;
-  std::cout << isTouchingGround << std::endl;
+//  std::cout << isTouchingGround << std::endl;
   return Conversions::toScreen(this->body->GetPosition());
 }
 
@@ -118,13 +145,13 @@ void PlayerBody::setPosition(float newX, float newY) {
   this->position.y = newY;
 }
 void PlayerBody::touchedGround() {
-  std::cout << "LANDED" << std::endl;
+//  std::cout << "LANDED" << std::endl;
   isTouchingGround = true;
-  if (isTouchingGround) {
-    std::cout << "isTouchingGround" << std::endl;
-  } else {
-    std::cout << "didn't Touch Ground" << std::endl;
-  }
+//  if (isTouchingGround) {
+//    std::cout << "isTouchingGround" << std::endl;
+//  } else {
+//    std::cout << "didn't Touch Ground" << std::endl;
+//  }
 
 //  numJumps = maxJumps;
 //
@@ -133,4 +160,13 @@ void PlayerBody::touchedGround() {
 }
 void PlayerBody::leftGround() {
   isTouchingGround = false;
+}
+bool PlayerBody::isFalling() {
+  bool falling = true;
+  float currentYVelocity = body->GetLinearVelocity().y;
+
+  if (currentYVelocity == 0 && currentYVelocity < previousYVelocity) {
+    falling = false;
+  }
+  return falling;
 }
