@@ -19,6 +19,7 @@ class GameBody {
   b2Vec2 getPosition();
   float getWidth();
   float getHeight();
+  void setColor(float r, float g, float b);
 
   //Need:
   //b2BodyDef w/ position vector

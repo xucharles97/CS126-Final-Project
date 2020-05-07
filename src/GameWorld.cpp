@@ -10,6 +10,7 @@
 
 #include "mylibrary/ConversionUtils.h"
 
+void CreateBody(float d, float d1, b2Vec2 vec2);
 GameWorld::GameWorld() {
   // Define the gravity vector.
   b2Vec2 gravity(0.0f, 12.0f);
@@ -30,15 +31,25 @@ void GameWorld::CreateBody(b2BodyDef body) {
 
 
 void GameWorld::CreateBody(float width, float height, b2Vec2 position) {
+  CreateBody(width, height, position.x, position.y, 0.0f, 1.0f, 0.0f);
+
+}
+
+void GameWorld::CreateBody(float width, float height, float xCoord, float yCoord) {
+  CreateBody(width, height, xCoord, yCoord, 0.0f, 1.0f, 0.0f);
+}
+
+void GameWorld::CreateBody(float width, float height, float xCoord,
+                           float yCoord, float red, float green, float blue) {
   b2BodyDef bodyDef;
-  bodyDef.position.Set(Conversions::toPhysics(position).x, Conversions::toPhysics(position).y);
+  bodyDef.position.Set(Conversions::toPhysics(xCoord), Conversions::toPhysics(yCoord));
   b2Body* body = world.CreateBody(&bodyDef);
-  GameBody newBody(body, Conversions::toPhysics(position), Conversions::dimensionsToPhysics(width), Conversions::dimensionsToPhysics(height));
+  GameBody newBody(body, Conversions::toPhysics(b2Vec2(xCoord, yCoord)), Conversions::dimensionsToPhysics(width), Conversions::dimensionsToPhysics(height));
   bodies.push_back(newBody);
   b2PolygonShape box;
   box.SetAsBox(newBody.getWidth(), newBody.getHeight());
   body->CreateFixture(&box, 0.0);
-
+  newBody.setColor(red, green, blue);
 }
 
 void GameWorld::Step(float32 timeStep, int32 velocityIterations, int32 positionIterations) {
@@ -56,6 +67,7 @@ void GameWorld::draw() {
   for (auto iter = bodies.begin(); iter != bodies.end(); iter++) {
     iter->draw();
   }
+  player.draw();
 
 }
 void GameWorld::setPlayer(float posX, float posY) {
@@ -75,12 +87,23 @@ void GameWorld::setPlayer(float posX, float posY) {
 //  player->CreateFixture(&fixtureDef);
 
   player = PlayerBody (playerBody, Conversions::dimensionsToPhysics(50.0f), Conversions::dimensionsToPhysics(50.0f));
-  std::cout << "made player!" << std::endl;
+//  std::cout << "made player!" << std::endl;
 }
 
 PlayerBody GameWorld::getPlayer() {
   return player;
 }
+void GameWorld::setEndPoint(float xCoord, float yCoord) {
+  this->endPoint.x = xCoord;
+  this->endPoint.y = yCoord;
+  CreateBody(50.0f, 50.0f, xCoord, yCoord, 1.0f, 1.0f, 1.0f);
+}
+
+bool GameWorld::playerAtEnd() {
+  return sqrt(pow(endPoint.x - player.getPhysicsPosition().x , 2) +
+                     pow(endPoint.y - player.getPhysicsPosition().y, 2)) < 1.0f;
+}
+
 
 //void GameWorld::addPlayer(b2BodyDef newPlayer) {
 //  newPlayer.type = b2_dynamicBody;

@@ -28,7 +28,7 @@ MyApp::MyApp() :
   timeStep{1.0f / 60.0f},
   velocityIterations{6},
   positionIterations{2},
-  jumpCooldown{25} {}
+  jumpCooldown{10} {}
 
 
 void MyApp::setup() {
@@ -73,13 +73,13 @@ void MyApp::draw() {
   cinder::gl::clear();
   drawWorld(demo);
 
-  cinder::gl::color(1, 0, 0);
-  cinder::vec2 position = demo.getPlayer().getScreenPosition();
+//  cinder::gl::color(1, 0, 0);
+//  cinder::vec2 position = demo.getPlayer().getScreenPosition();
 //  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
-  float widthToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getWidth()) / 2;
-  float heightToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getHeight()) / 2;
-  Rectf rect(position.x - widthToDraw, position.y - heightToDraw, position.x + widthToDraw, position.y + heightToDraw);
-  cinder::gl::drawSolidRect(rect);
+//  float widthToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getWidth()) / 2;
+//  float heightToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getHeight()) / 2;
+//  Rectf rect(position.x - widthToDraw, position.y - heightToDraw, position.x + widthToDraw, position.y + heightToDraw);
+//  cinder::gl::drawSolidRect(rect);
 }
 
 void MyApp::keyDown(KeyEvent event) {

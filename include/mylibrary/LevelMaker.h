@@ -12,6 +12,7 @@
 class LevelMaker {
  public:
   LevelMaker();
+  LevelMaker(float screenSize);
 
   enum GameState {ONGOING, GAME_OVER, FINISHED_LEVEL};
 
@@ -29,6 +30,7 @@ class LevelMaker {
   b2Vec2 spawnPoint;
   b2Vec2 endPoint;
   GameWorld level;
+  float screenSize;
 
 
 };

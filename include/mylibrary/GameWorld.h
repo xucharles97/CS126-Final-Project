@@ -21,12 +21,16 @@ class GameWorld {
   //shape is box by default
   void CreateBody(b2BodyDef body);
   void CreateBody(float width, float height, b2Vec2 position);
+  void CreateBody(float width, float height, float xCoord, float yCoord);
+  void CreateBody(float width, float height, float xCoord, float yCoord, float red, float green, float blue);
   void Step(float32 timeStep, int32 velocityIterations, int32 positionIterations);
   void Step(bool left, bool right, bool up, bool down);
   void draw();
   PlayerBody getPlayer();
   void setPlayer(float posX, float posY);
   std::vector<GameBody> bodies;
+  void setEndPoint(float xCoord, float yCoord);
+  bool playerAtEnd();
 
  private:
   b2Vec2 gravity;
@@ -37,6 +41,10 @@ class GameWorld {
   int32 velocityIterations;
   int32 positionIterations;
   ContactListener contactListener;
+  b2Vec2 endPoint;
+  float worldBottom; //in physics form
+
+
 
 
 

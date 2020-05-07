@@ -62,3 +62,6 @@ GameBody::GameBody(b2Body* body, float bodyWidth, float bodyHeight) {
 GameBody::GameBody() {
   color = {0, 1, 0};
 }
+void GameBody::setColor(float r, float g, float b) {
+  color = {r, g, b};
+}

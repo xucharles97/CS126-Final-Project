@@ -27,7 +27,6 @@ class PlayerBody : public GameBody {
   bool isFalling();
 
 
-
   b2Vec2 getPhysicsPosition();
   ci::vec2 getScreenPosition();
 
