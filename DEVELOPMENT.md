@@ -144,6 +144,10 @@
                 - More overloaded CreateBody functions, including one to set the color of the GameBody
                 - An endpoint that the player must reach
                 - And a bottom boundary for bottomless pits
+    - After integrating the first LevelMaker in my_app, the engine I had made stopped working for some reason
+        - The collision mechanics became non-existent. Whenever the player touched a block, they would simply fall through and the game would crash.
+        - Wasn't able to figure out why before the Wednesday night deadline.             
+        
            
         
   

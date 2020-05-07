@@ -70,22 +70,22 @@ void MyApp::keyDown(KeyEvent event) {
 //  cout << "keyDown code: " << std::to_string(event.getChar()) << std::endl;
 
   int code = event.getCode();
-  if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_w) {
+  if (code == KeyEvent::KEY_UP) {
       if (timeUntilNextJump <= 0) {
         upPressed = true;
         timeUntilNextJump = jumpCooldown;
       }
   }
 
-  if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_s) {
+  if (code == KeyEvent::KEY_DOWN) {
     downPressed = true;
   }
 
-  if (code == KeyEvent::KEY_LEFT || code == KeyEvent::KEY_a) {
+  if (code == KeyEvent::KEY_LEFT) {
     leftPressed = true;
   }
 
-  if (code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_d) {
+  if (code == KeyEvent::KEY_RIGHT) {
     rightPressed = true;
   }
 
@@ -93,19 +93,19 @@ void MyApp::keyDown(KeyEvent event) {
 
 void MyApp::keyUp(KeyEvent event) {
   int code = event.getCode();
-  if (code == KeyEvent::KEY_UP || code == KeyEvent::KEY_k) {
+  if (code == KeyEvent::KEY_UP) {
     upPressed = false;
   }
 
-  if (code == KeyEvent::KEY_DOWN || code == KeyEvent::KEY_j) {
+  if (code == KeyEvent::KEY_DOWN) {
     downPressed = false;
   }
 
-  if (code == KeyEvent::KEY_LEFT || code == KeyEvent::KEY_a) {
+  if (code == KeyEvent::KEY_LEFT) {
     leftPressed = false;
   }
 
-  if (code == KeyEvent::KEY_RIGHT || code == KeyEvent::KEY_s) {
+  if (code == KeyEvent::KEY_RIGHT) {
     rightPressed = false;
   }
 }
