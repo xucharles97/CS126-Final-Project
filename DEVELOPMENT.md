@@ -133,7 +133,17 @@
             - Couldn't figure out where it was being lost (when I ran the debugger it happened somewhere in the Box2D methods), so I reverted the branch
         - Second attempt didn't work either, decided to do it without the ContactListener
     - Eventually got the jumping mechanics to work by using the player's velocity to determine if they were falling
-        - If their acceleration was downwards and but y velocity is 0, then they must be on the ground 
+        - If their acceleration was downwards and but y velocity is 0, then they must be on the ground
+    - Added the LevelMaker class
+        - Operates as a pseudo-interface
+            - Each level in the game will implement the loadLevel() virtual function to create its own GameWorld
+            - Each LevelMaker object will be connected to the next level via a LinkedList
+        - Added some util/convenience methods to GameBody and GameWorld to allow for further compatability with LevelMaker
+            - GameBody now has a function to set its color
+            - GameWorld now has:
+                - More overloaded CreateBody functions, including one to set the color of the GameBody
+                - An endpoint that the player must reach
+                - And a bottom boundary for bottomless pits
            
         
   
