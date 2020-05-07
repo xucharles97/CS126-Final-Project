@@ -14,9 +14,9 @@ class LevelMaker {
   LevelMaker();
   LevelMaker(float screenSize);
 
+  enum GameState {ONGOING, GAME_OVER, FINISHED_LEVEL};
 
-
-  GameWorld::GameState update(bool left, bool right, bool up, bool down);
+  LevelMaker::GameState update(bool left, bool right, bool up, bool down);
   LevelMaker* getNextLevel();
 
   virtual void LoadLevel();
@@ -24,7 +24,7 @@ class LevelMaker {
 
   void setNextLevel(LevelMaker* nextLevel);
 
- private:
+ protected:
   LevelMaker* nextLevel;
   float worldBottom;
   b2Vec2 spawnPoint;

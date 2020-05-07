@@ -3,14 +3,16 @@
 #include "my_app.h"
 
 #include <Box2D/Box2D.h>
-#include <cinder/app/App.h>
 #include <cinder/Color.h>
-#include "cinder/gl/gl.h"
-#include "cinder/Vector.h"
+#include <cinder/app/App.h>
+#include <mylibrary/LevelOne.h>
 
+#include "cinder/Vector.h"
+#include "cinder/gl/gl.h"
+#include "mylibrary/ConversionUtils.h"
 #include "mylibrary/GameBody.h"
 #include "mylibrary/GameWorld.h"
-#include "mylibrary/ConversionUtils.h"
+#include "mylibrary/LevelMaker.h"
 
 namespace myapp {
 
@@ -34,24 +36,10 @@ MyApp::MyApp() :
 void MyApp::setup() {
   upPressed, downPressed, leftPressed, rightPressed = false;
 
-  //TODO: Refactor into classes specific to a given level (use polymorphism)
-  b2BodyDef groundBodyDef;
-  groundBodyDef.position.Set(width / 2, height - 75);
-  demo.CreateBody(width, 150, groundBodyDef.position);
-
-//  b2BodyDef top;
-//  top.position.Set(width / 2, 0);
-//  demo.CreateBody(width, 25, top.position);
-//
-  b2BodyDef left;
-  left.position.Set(0, height / 2);
-  demo.CreateBody(1, height, left.position);
-//
-//  b2BodyDef right;
-//  right.position.Set(width - 50, height / 2);
-//  demo.CreateBody(right, 25, height, right.position);
-//
-  demo.setPlayer(125.0f, height - 150);
+  LevelOne levelOne;
+//  levelOne.LoadLevel();
+  currentLevel = &levelOne;
+  currentLevel->LoadLevel();
 
   inJumpCooldown = false;
   timeUntilNextJump = 0;
@@ -63,7 +51,7 @@ void MyApp::update() {
     timeUntilNextJump--;
   }
 
-  demo.Step(leftPressed, rightPressed, upPressed, downPressed);
+  state = currentLevel->update(leftPressed, rightPressed, upPressed, downPressed);
 
   upPressed = false;
 
@@ -71,15 +59,10 @@ void MyApp::update() {
 
 void MyApp::draw() {
   cinder::gl::clear();
-  drawWorld(demo);
+  if (state == LevelMaker::GameState::FINISHED_LEVEL || state == LevelMaker::GameState::ONGOING) {
+    currentLevel->draw();
+  }
 
-//  cinder::gl::color(1, 0, 0);
-  cinder::vec2 position = demo.getPlayer().getScreenPosition();
-  cout << "Player position: (" << position.x << ", " << position.y << ")" << std::endl;
-//  float widthToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getWidth()) / 2;
-//  float heightToDraw = Conversions::dimensionsToScreen(demo.getPlayer().getHeight()) / 2;
-//  Rectf rect(position.x - widthToDraw, position.y - heightToDraw, position.x + widthToDraw, position.y + heightToDraw);
-//  cinder::gl::drawSolidRect(rect);
 }
 
 void MyApp::keyDown(KeyEvent event) {

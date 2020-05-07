@@ -16,8 +16,10 @@ LevelMaker::LevelMaker(float screenSize) {
   level.setWorldBottom(worldBottom);
 }
 
-GameWorld::GameState LevelMaker::update(bool leftInput, bool rightInput, bool upInput, bool downInput) {
-  return level.Step(leftInput, rightInput, upInput, downInput);
+LevelMaker::GameState LevelMaker::update(bool leftInput, bool rightInput, bool upInput, bool downInput) {
+  int output = level.Step(leftInput, rightInput, upInput, downInput);
+  GameState state = static_cast<GameState>(output);
+  return state;
 }
 
 void LevelMaker::draw() {

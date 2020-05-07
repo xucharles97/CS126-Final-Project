@@ -6,6 +6,7 @@
 #include <Box2D/Box2D.h>
 #include <cinder/app/App.h>
 #include <mylibrary/GameWorld.h>
+#include <mylibrary/LevelMaker.h>
 
 namespace myapp {
 
@@ -21,7 +22,7 @@ class MyApp : public cinder::app::App {
   b2Vec2 gravity;
   b2World world;
   void drawWorld(GameWorld& world);
-  GameWorld demo;
+  LevelMaker* currentLevel;
  private:
   float32 width;
   float32 height;
@@ -36,6 +37,7 @@ class MyApp : public cinder::app::App {
   int jumpCooldown;
   bool inJumpCooldown;
   int timeUntilNextJump;
+  LevelMaker::GameState state;
 
 };
 
