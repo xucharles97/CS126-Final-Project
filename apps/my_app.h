@@ -7,6 +7,7 @@
 #include <cinder/app/App.h>
 #include <mylibrary/GameWorld.h>
 #include <mylibrary/LevelMaker.h>
+#include <mylibrary/LevelOne.h>
 
 namespace myapp {
 
@@ -22,7 +23,7 @@ class MyApp : public cinder::app::App {
   b2Vec2 gravity;
   b2World world;
   void drawWorld(GameWorld& world);
-  LevelMaker* currentLevel;
+  std::vector<LevelMaker> levels;
  private:
   float32 width;
   float32 height;
@@ -38,6 +39,9 @@ class MyApp : public cinder::app::App {
   bool inJumpCooldown;
   int timeUntilNextJump;
   LevelMaker::GameState state;
+  int currentLevelIndex;
+  LevelMaker currentLevel;
+  LevelOne levelOne;
 
 };
 

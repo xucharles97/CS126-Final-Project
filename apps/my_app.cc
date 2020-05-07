@@ -35,14 +35,14 @@ MyApp::MyApp() :
 
 void MyApp::setup() {
   upPressed, downPressed, leftPressed, rightPressed = false;
+  currentLevelIndex = 0;
 
-  LevelOne levelOne;
-//  levelOne.LoadLevel();
-  currentLevel = &levelOne;
-  currentLevel->LoadLevel();
+  levelOne.LoadLevel();
+  levels.push_back(levelOne);
 
   inJumpCooldown = false;
   timeUntilNextJump = 0;
+  currentLevel = levels.at(currentLevelIndex);
 }
 
 void MyApp::update() {
@@ -51,7 +51,7 @@ void MyApp::update() {
     timeUntilNextJump--;
   }
 
-  state = currentLevel->update(leftPressed, rightPressed, upPressed, downPressed);
+  state = currentLevel.update(leftPressed, rightPressed, upPressed, downPressed);
 
   upPressed = false;
 
@@ -60,7 +60,7 @@ void MyApp::update() {
 void MyApp::draw() {
   cinder::gl::clear();
   if (state == LevelMaker::GameState::FINISHED_LEVEL || state == LevelMaker::GameState::ONGOING) {
-    currentLevel->draw();
+    currentLevel.draw();
   }
 
 }

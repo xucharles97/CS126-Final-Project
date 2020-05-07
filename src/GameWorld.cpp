@@ -105,7 +105,7 @@ PlayerBody GameWorld::getPlayer() {
 void GameWorld::setEndPoint(float xCoord, float yCoord) {
   this->endPoint.x = xCoord;
   this->endPoint.y = yCoord;
-  CreateBody(50.0f, 50.0f, xCoord, yCoord, 1.0f, 1.0f, 1.0f);
+  CreateBody(50.0f, 50.0f, xCoord, yCoord, 255.0f, 255.0f, 255.0f);
 }
 
 bool GameWorld::playerAtEnd() {

@@ -11,7 +11,6 @@ LevelMaker::LevelMaker() {
 
 LevelMaker::LevelMaker(float screenSize) {
   this->screenSize = screenSize;
-
   worldBottom = screenSize;
   level.setWorldBottom(worldBottom);
 }
