@@ -16,17 +16,17 @@ class LevelMaker {
 
   enum GameState {ONGOING, GAME_OVER, FINISHED_LEVEL};
 
-  GameState update();
+  GameState update(bool left, bool right, bool up, bool down);
   LevelMaker* getNextLevel();
 
   virtual void LoadLevel();
   virtual void draw();
 
-  void setNextLevel(LevelMaker &nextLevel);
+  void setNextLevel(LevelMaker* nextLevel);
 
  private:
   LevelMaker* nextLevel;
-  float bottomBoundary;
+  float worldBottom;
   b2Vec2 spawnPoint;
   b2Vec2 endPoint;
   GameWorld level;
