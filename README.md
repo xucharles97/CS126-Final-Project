@@ -4,7 +4,9 @@
 [![docs](https://img.shields.io/badge/docs-yes-brightgreen)](docs/README.md)
 
 
-**Author**: Charles Xu - [`cyx2@illinois.edu`](mailto:cyx2@illinois.edu)
+**Author**: Charles Xu - [`xucharles97@gmail.com`](mailto:xucharles97@gmail.com) [`cyx2@illinois.edu`](mailto:cyx2@illinois.edu)
+
+This repo was originally hosted on Github Classroom during the Spring 2020 semester of CS 126. It was copied to this Github page on August 14, 2022 for preservation purposes. 
 
 ## Introduction
 
